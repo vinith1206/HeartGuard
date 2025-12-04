@@ -42,59 +42,125 @@ st.set_page_config(
 
 CUSTOM_CSS = """
 <style>
+/* Safari compatibility fixes */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* Compact top padding */
-.block-container { padding-top: 1.2rem; padding-bottom: 2rem; }
+.block-container { 
+  padding-top: 1.2rem; 
+  padding-bottom: 2rem; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* Result card styling */
 .result-card {
   border: 1px solid rgba(200,200,200,0.2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
   border-radius: 10px;
   padding: 14px 16px;
   background: rgba(125,125,125,0.07);
   margin: 10px 0;
+  display: block;
 }
-.metric-title { font-weight: 600; opacity: 0.9; }
-.metric-value { font-size: 1.4rem; font-weight: 700; }
+.metric-title { 
+  font-weight: 600; 
+  opacity: 0.9; 
+  -webkit-font-smoothing: antialiased;
+}
+.metric-value { 
+  font-size: 1.4rem; 
+  font-weight: 700; 
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Horizontal risk bar */
+/* Horizontal risk bar - Safari compatible gradient */
 .risk-bar {
   width: 100%;
   height: 14px;
+  -webkit-border-radius: 999px;
+  -moz-border-radius: 999px;
   border-radius: 999px;
+  background: -webkit-linear-gradient(left, #3CB371 0%, #FFD166 50%, #EF476F 100%);
+  background: -moz-linear-gradient(left, #3CB371 0%, #FFD166 50%, #EF476F 100%);
   background: linear-gradient(90deg, #3CB371 0%, #FFD166 50%, #EF476F 100%);
   position: relative;
   margin-top: 10px;
+  display: block;
 }
 .risk-indicator {
   position: absolute;
   top: -6px;
-  width: 0; height: 24px;
+  width: 0; 
+  height: 24px;
   border-left: 3px solid white;
+  -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 4px rgba(0,0,0,0.3);
   box-shadow: 0 0 4px rgba(0,0,0,0.3);
+  display: block;
 }
-.footer-note { opacity: 0.7; font-size: 0.9rem; }
+.footer-note { 
+  opacity: 0.7; 
+  font-size: 0.9rem; 
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Subtle card borders */
-.stTabs [data-baseweb="tab-list"] { gap: 6px; }
-.stTabs [data-baseweb="tab"] { padding: 6px 10px; }
+/* Subtle card borders - Safari compatible */
+.stTabs [data-baseweb="tab-list"] { 
+  gap: 6px; 
+  -webkit-gap: 6px;
+}
+.stTabs [data-baseweb="tab"] { 
+  padding: 6px 10px; 
+}
 
 /* Warning badges */
 .warning-badge {
   background: #FFF3CD;
   border: 1px solid #FFC107;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px 0;
   font-size: 0.85rem;
+  display: block;
 }
 
 .info-badge {
   background: #D1ECF1;
   border: 1px solid #0C5460;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   border-radius: 5px;
   padding: 5px 10px;
   margin: 5px 0;
   font-size: 0.85rem;
+  display: block;
+}
+
+/* Safari flexbox fixes */
+div[style*="display: flex"] {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+}
+
+/* Safari link fixes */
+a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+/* Safari gradient fixes for developer header */
+div[style*="linear-gradient"] {
+  background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 </style>
 """
@@ -275,24 +341,38 @@ if model is None or scaler is None:
 # Sidebar: Enhanced with more features
 # -----------------------------------------------------------------------------
 with st.sidebar:
-    # Developer info
+    # Developer info - Safari compatible
     st.markdown(
         """
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        <div style="background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                     padding: 15px; 
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
                     border-radius: 10px; 
                     margin-bottom: 20px;
-                    text-align: center;">
-            <h4 style="color: white; margin: 0 0 10px 0;">👨‍💻 Developer</h4>
-            <p style="color: white; margin: 5px 0; font-weight: 600;">Vineeth</p>
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
+                    text-align: center;
+                    display: block;">
+            <h4 style="color: white; margin: 0 0 10px 0; -webkit-font-smoothing: antialiased;">👨‍💻 Developer</h4>
+            <p style="color: white; margin: 5px 0; font-weight: 600; -webkit-font-smoothing: antialiased;">Vineeth</p>
+            <div style="display: -webkit-flex; display: -moz-flex; display: flex; 
+                        -webkit-gap: 10px; gap: 10px; 
+                        -webkit-justify-content: center; justify-content: center; 
+                        margin-top: 10px;">
                 <a href="https://www.linkedin.com/in/vineeth-gollapalli-439931380/" 
                    target="_blank" 
-                   style="color: white; text-decoration: none; font-size: 1.2em;" 
+                   rel="noopener noreferrer"
+                   style="color: white; text-decoration: none; font-size: 1.2em; 
+                          -webkit-tap-highlight-color: transparent;
+                          display: inline-block;" 
                    title="LinkedIn">🔗</a>
                 <a href="https://github.com/vinith1206" 
                    target="_blank" 
-                   style="color: white; text-decoration: none; font-size: 1.2em;" 
+                   rel="noopener noreferrer"
+                   style="color: white; text-decoration: none; font-size: 1.2em; 
+                          -webkit-tap-highlight-color: transparent;
+                          display: inline-block;" 
                    title="GitHub">💻</a>
             </div>
         </div>
