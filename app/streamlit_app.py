@@ -224,6 +224,41 @@ if "load_profile_clicked" not in st.session_state:
     st.session_state.load_profile_clicked = False
 
 st.title("❤️ HeartGuard: Heart Disease Risk Prediction")
+
+# Author info header
+st.markdown(
+    """
+    <div style="background: linear-gradient(90deg, rgba(59,130,246,0.1) 0%, rgba(147,51,234,0.1) 100%); 
+                padding: 15px 20px; 
+                border-radius: 10px; 
+                margin-bottom: 20px;
+                border-left: 4px solid #3B82F6;">
+        <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap;">
+            <div style="flex: 1;">
+                <h3 style="margin: 0; color: #1E40AF; font-size: 1.1rem;">👨‍💻 Developed by <strong style="color: #3B82F6;">Vineeth</strong></h3>
+            </div>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="https://www.linkedin.com/in/vineeth-gollapalli-439931380/" 
+                   target="_blank" 
+                   style="text-decoration: none; color: #0077B5; font-weight: 600; 
+                          padding: 8px 15px; background: white; border-radius: 6px; 
+                          border: 1px solid #0077B5; transition: all 0.3s;">
+                    🔗 LinkedIn
+                </a>
+                <a href="https://github.com/vinith1206" 
+                   target="_blank" 
+                   style="text-decoration: none; color: #24292E; font-weight: 600; 
+                          padding: 8px 15px; background: white; border-radius: 6px; 
+                          border: 1px solid #24292E; transition: all 0.3s;">
+                    💻 GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 st.write(
     "**HeartGuard** - Your intelligent heart health companion. Predict the probability of heart disease using AI-powered analysis. "
     "Enter patient information below or use batch prediction for multiple patients."
@@ -240,6 +275,31 @@ if model is None or scaler is None:
 # Sidebar: Enhanced with more features
 # -----------------------------------------------------------------------------
 with st.sidebar:
+    # Developer info
+    st.markdown(
+        """
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                    padding: 15px; 
+                    border-radius: 10px; 
+                    margin-bottom: 20px;
+                    text-align: center;">
+            <h4 style="color: white; margin: 0 0 10px 0;">👨‍💻 Developer</h4>
+            <p style="color: white; margin: 5px 0; font-weight: 600;">Vineeth</p>
+            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
+                <a href="https://www.linkedin.com/in/vineeth-gollapalli-439931380/" 
+                   target="_blank" 
+                   style="color: white; text-decoration: none; font-size: 1.2em;" 
+                   title="LinkedIn">🔗</a>
+                <a href="https://github.com/vinith1206" 
+                   target="_blank" 
+                   style="color: white; text-decoration: none; font-size: 1.2em;" 
+                   title="GitHub">💻</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    
     st.header("📊 Summary")
     st.caption("Live view of your current input values.")
     summary_placeholder = st.empty()
@@ -963,7 +1023,10 @@ st.markdown("---")
 st.markdown(
     """
     <div class="footer-note">
-      <strong>HeartGuard</strong> - Built by <strong>vineeth</strong>. For educational purposes only; not a medical device.
+      <strong>HeartGuard</strong> - Built by <strong><a href="https://www.linkedin.com/in/vineeth-gollapalli-439931380/" target="_blank" style="color: inherit; text-decoration: none;">Vineeth</a></strong> | 
+      <a href="https://www.linkedin.com/in/vineeth-gollapalli-439931380/" target="_blank" style="color: #0077B5; text-decoration: none;">LinkedIn</a> | 
+      <a href="https://github.com/vinith1206" target="_blank" style="color: #24292E; text-decoration: none;">GitHub</a>
+      <br>For educational purposes only; not a medical device.
       <br>⚠️ This tool is for educational and research purposes only. Always consult healthcare professionals for medical decisions.
     </div>
     """,
